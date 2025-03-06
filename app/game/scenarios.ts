@@ -1,8 +1,12 @@
+export type ScenarioChoice = 
+  | { label: string; moneyImpact: number; friendshipImpact?: number }  // Simple choice (fixed impact)
+  | { label: string; outcomes: { chance: number; moneyImpact: number; friendshipImpact: number; description: string }[] }; // Randomized choice
+
 export type ScenarioType = {
-    id: string;
-    text: string;
-    choices: { label: string; moneyImpact: number; friendshipImpact?: number }[];
-  };
+  id: string;
+  text: string;
+  choices: ScenarioChoice[];
+};
   
   export const scenarios: ScenarioType[] = [
     // 🏫 SCHOOL & STUDY LIFE
@@ -19,7 +23,13 @@ export type ScenarioType = {
       id: "cheating_risk",
       text: "A classmate offers you a stolen copy of the final exam. What do you do?",
       choices: [
-        { label: "Take it and hope for the best", moneyImpact: 0, friendshipImpact: -20 },
+        {
+          label: "Take it and hope for the best",
+          outcomes: [
+            { chance: 0.3, moneyImpact: 0, friendshipImpact: 30, description: "You get away with it, people think you are cool." },
+            { chance: 0.7, moneyImpact: 0, friendshipImpact: -20, description: "You get caught and face consequences!" }
+          ],
+        },
         { label: "Refuse and report them", moneyImpact: 0, friendshipImpact: 10 },
         { label: "Ignore and study yourself", moneyImpact: 0 },
       ],
@@ -54,7 +64,13 @@ export type ScenarioType = {
       id: "scholarship_application",
       text: "You have the chance to apply for a scholarship. Do you?",
       choices: [
-        { label: "Yes, every bit helps!", moneyImpact: 0, friendshipImpact: 5 },
+        {
+          label: "Yes, every bit helps!",
+          outcomes: [
+            { chance: 0.2, moneyImpact: 500, friendshipImpact: -5, description: "Your application is successful! You receive the scholarship." },
+            { chance: 0.8, moneyImpact: 0, friendshipImpact: -5, description: "You apply, but you don’t win the scholarship." },
+          ],
+        },
         { label: "No, it’s too much work", moneyImpact: 0 },
       ],
     },
@@ -97,7 +113,14 @@ export type ScenarioType = {
       id: "investing_opportunity",
       text: "A classmate suggests investing $100 in a startup. What do you do?",
       choices: [
-        { label: "Invest and hope for the best", moneyImpact: -100, friendshipImpact: 10 },
+        {
+          label: "Invest and hope for the best",
+          outcomes: [
+            { chance: 0.3, moneyImpact: 200, friendshipImpact: 0,  description: "The startup takes off! You double your money!" },
+            { chance: 0.4, moneyImpact: -50, friendshipImpact: 0, description: "The startup struggles, and you only recover half your investment." },
+            { chance: 0.3, moneyImpact: -100, friendshipImpact: 0, description: "The startup fails, and you lose everything." },
+          ],
+        },
         { label: "Decline, it’s too risky", moneyImpact: 0 },
       ],
     },
@@ -127,7 +150,13 @@ export type ScenarioType = {
       choices: [
         { label: "Buy the ticket and go!", moneyImpact: -250, friendshipImpact: 20 },
         { label: "Skip it, too expensive", moneyImpact: 0, friendshipImpact: -20 },
-        { label: "Sneak in (risk getting caught)", moneyImpact: 0, friendshipImpact: 10 },
+        {
+          label: "Sneak in (risk getting caught)",
+          outcomes: [
+            { chance: 0.7, moneyImpact: 0, friendshipImpact: 10, description: "You sneak in successfully and have a great time!" },
+            { chance: 0.3, moneyImpact: -500, friendshipImpact: -10, description: "You get caught, fined, and embarrassed!" },
+          ],
+        },
       ],
     },
     {
@@ -147,7 +176,7 @@ export type ScenarioType = {
       choices: [
         { label: "Pay for repairs now", moneyImpact: -70 },
         { label: "Use public transport ($20/week)", moneyImpact: -20 },
-        { label: "Ask your parents for money", moneyImpact: -20, friendshipImpact: -5 },
+        { label: "Ask your parents for money", moneyImpact: -10, friendshipImpact: -5 },
       ],
     },
     {
@@ -171,7 +200,13 @@ export type ScenarioType = {
       text: "You got a parking ticket! It costs $75. What do you do?",
       choices: [
         { label: "Pay the ticket", moneyImpact: -75 },
-        { label: "Try to contest it in court", moneyImpact: 0 },
+        {
+          label: "Try to contest it in court",
+          outcomes: [
+            { chance: 0.5, moneyImpact: 50, friendshipImpact: 0, description: "The judge rules in your favor. Receive compensation!" },
+            { chance: 0.5, moneyImpact: -100, friendshipImpact: 0, description: "You lose the case and have to pay court fees!" },
+          ],
+        },
       ],
     },
   
@@ -198,7 +233,7 @@ export type ScenarioType = {
       text: "A gym membership costs $30/month. Do you sign up?",
       choices: [
         { label: "Yes, health is wealth!", moneyImpact: -30, friendshipImpact: 5 },
-        { label: "No, too expensive", moneyImpact: 0 },
+        { label: "No, too expensive", moneyImpact: 0, friendshipImpact: -5 },
       ],
     },
     {
@@ -250,14 +285,21 @@ export type ScenarioType = {
       text: "A charity is asking for donations. What do you do?",
       choices: [
         { label: "Donate $20", moneyImpact: -20, friendshipImpact: 10 },
-        { label: "Ignore the request", moneyImpact: 0 },
+        { label: "Ignore the request", moneyImpact: -5 },
       ],
     },
     {
       id: "lottery_ticket",
       text: "A friend suggests buying a lottery ticket for $10. What do you do?",
       choices: [
-        { label: "Buy it, you never know!", moneyImpact: -10 },
+        {
+          label: "Buy it, you never know!",
+          outcomes: [
+            { chance: 0.01, moneyImpact: 1000, friendshipImpact: 0, description: "You win the jackpot! Life-changing money!" },
+            { chance: 0.09, moneyImpact: 50, friendshipImpact: 0, description: "You win a small prize, better than nothing." },
+            { chance: 0.9, moneyImpact: -10, friendshipImpact: 0, description: "You don't win anything. Typical lottery." },
+          ],
+        },
         { label: "Save your money", moneyImpact: 0 },
       ],
     },
@@ -291,7 +333,13 @@ export type ScenarioType = {
         id: "scholarship_essay",
         text: "You have the chance to apply for a $500 scholarship, but the essay is due tomorrow. What do you do?",
         choices: [
-          { label: "Stay up all night to write it", moneyImpact: 0, friendshipImpact: -10 },
+          {
+            label: "Stay up all night to write it",
+            outcomes: [
+              { chance: 0.2, moneyImpact: 500, friendshipImpact: -10, description: "Your hard work pays off! You win the scholarship." },
+              { chance: 0.8, moneyImpact: 0, friendshipImpact: -10, description: "You submit the essay, but it's not selected." },
+            ],
+          },
           { label: "Ask a friend to help you", moneyImpact: 0, friendshipImpact: 10 },
           { label: "Skip it, it’s too much work", moneyImpact: 0 },
         ],
@@ -424,7 +472,7 @@ export type ScenarioType = {
         id: "streaming_subscriptions",
         text: "You’re subscribed to 3 streaming services ($40/month). Do you cancel any?",
         choices: [
-          { label: "Cancel all but one", moneyImpact: 20 },
+          { label: "Cancel all but one", moneyImpact: 10 },
           { label: "Keep them all", moneyImpact: 0 },
         ],
       },
@@ -450,7 +498,14 @@ export type ScenarioType = {
         id: "lottery_ticket",
         text: "A friend suggests buying a lottery ticket for $10. What do you do?",
         choices: [
-          { label: "Buy it, you never know!", moneyImpact: -10 },
+          {
+            label: "Buy it, you never know!",
+            outcomes: [
+              { chance: 0.01, moneyImpact: 1000, friendshipImpact: 0, description: "You win the jackpot! Life-changing money!" },
+              { chance: 0.09, moneyImpact: 50, friendshipImpact: 0, description: "You win a small prize, better than nothing." },
+              { chance: 0.9, moneyImpact: -10, friendshipImpact: 0, description: "You don't win anything. Typical lottery." },
+            ],
+          },
           { label: "Save your money", moneyImpact: 0 },
         ],
       },
@@ -493,7 +548,7 @@ export type ScenarioType = {
         text: "A friend asks you to carpool to campus. What do you do?",
         choices: [
           { label: "Agree and split gas costs", moneyImpact: -10, friendshipImpact: 10 },
-          { label: "Decline and drive alone", moneyImpact: 0, friendshipImpact: -5 },
+          { label: "Decline and walk alone", moneyImpact: 0, friendshipImpact: -5 },
         ],
       },
       {
