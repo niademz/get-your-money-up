@@ -295,7 +295,7 @@ export type ScenarioType = {
         {
           label: "Buy it, you never know!",
           outcomes: [
-            { chance: 0.01, moneyImpact: 1000, friendshipImpact: 0, description: "You win the jackpot! Life-changing money!" },
+            { chance: 0.01, moneyImpact: 100000, friendshipImpact: 0, description: "You win the jackpot! Life-changing money!" },
             { chance: 0.09, moneyImpact: 50, friendshipImpact: 0, description: "You win a small prize, better than nothing." },
             { chance: 0.9, moneyImpact: -10, friendshipImpact: 0, description: "You don't win anything. Typical lottery." },
           ],
@@ -558,6 +558,20 @@ export type ScenarioType = {
           { label: "Sell it for $50", moneyImpact: 50 },
           { label: "Keep it for future reference", moneyImpact: 0 },
           { label: "Give it to a friend", moneyImpact: 0, friendshipImpact: 10 },
+        ],
+      },
+      {
+        id: "fashion_show",
+        text: "Your friend suggest joining a fashion show with him. what do you do?",
+        choices: [
+          {
+            label: "Yes, it will be fun",
+            outcomes: [
+              { chance: 0.8, moneyImpact: 0, friendshipImpact: 20,  description: "The show goes great, people loved your outfit" },
+              { chance: 0.2, moneyImpact: 0, friendshipImpact: -30, description: "You flop mid show and there are clips going round!." },
+            ],
+          },
+          { label: "Decline, I don't have what it takes", moneyImpact: 0, friendshipImpact: -10 },
         ],
       },
   ];

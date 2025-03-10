@@ -11,7 +11,7 @@ export type GameEvent = {
   export const events: GameEvent[] = [
     { id: "scholarship_bonus", text: "🔥 You got a $200 scholarship bonus!", type: "money_gain", moneyImpact: 200, friendshipImpact: 0, probability: 5 },
     { id: "phone_broke", text: "📱 Your phone screen shattered! -$150 for repairs.", type: "money_loss", moneyImpact: -150, friendshipImpact: 0, probability: 10 },
-    { id: "found_wallet", text: "👛 You found a wallet with $50. Keep it or return it?", type: "money_choice", moneyImpact: 50, friendshipImpact: 0, probability: 20 },
+    { id: "found_wallet", text: "👛 You found a wallet with $50. Keep it!", type: "money_choice", moneyImpact: 50, friendshipImpact: 0, probability: 20 },
     { id: "free_food", text: "🍕 Free campus event! You save $10 on food.", type: "money_gain", moneyImpact: 10, friendshipImpact: 0, probability: 30 },
     { id: "parking_ticket", text: "🚗 You got a parking ticket! -$75", type: "money_loss", moneyImpact: -75, friendshipImpact: 0, probability: 25 },
     { id: "unexpected_gift", text: "🎁 You received a surprise gift of $100!", type: "money_gain", moneyImpact: 100, friendshipImpact: 0, probability: 15 },
