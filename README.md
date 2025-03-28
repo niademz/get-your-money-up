@@ -8,11 +8,11 @@ bash
 Copy
 Edit
 npm run dev
-# or
+or
 yarn dev
-# or
+or
 pnpm dev
-# or
+or
 bun dev
 Once the server is running, open your browser and navigate to http://localhost:3000 to view the project.
 
