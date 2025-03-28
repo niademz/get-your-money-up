@@ -1,10 +1,12 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+Get Your Money Up 101
+Developed for the Purdue University Black Student Union event, Get Your Money Up 101 is an interactive financial literacy game designed to engage users in dynamic scenarios and random events that influence their social standing and financial well-being. This project aims to provide an engaging and educational experience for players, helping them develop essential financial literacy skills in a fun and interactive way.
 
-## Getting Started
+Installation Instructions
+To run the development server, execute the following command:
 
-First, run the development server:
-
-```bash
+bash
+Copy
+Edit
 npm run dev
 # or
 yarn dev
@@ -12,25 +14,10 @@ yarn dev
 pnpm dev
 # or
 bun dev
-```
+Once the server is running, open your browser and navigate to http://localhost:3000 to view the project.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Project Overview
+This website was built using Next.js, TypeScript, and Tailwind CSS for a modern, responsive, and scalable user interface. The combination of these technologies ensures a seamless user experience, making the game both enjoyable and intuitive.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+What's Coming Next
+Multiplayer Functionality: Integration with Supabase will allow for multiplayer capabilities, enabling classrooms and small groups to interact and compete in real time.
